@@ -246,7 +246,7 @@ class AllpubsView extends GetView<AllpubsController> {
                   topRight: Radius.circular(ResponsiveUtils.wp(4)),
                 ),
                 child: Image.network(
-                  "$backUrl/uploads/pubs/${pub.image}",
+                  pub.image!,
                   fit: BoxFit.cover,
                   height: ResponsiveUtils.hp(20),
                   width: double.infinity,
