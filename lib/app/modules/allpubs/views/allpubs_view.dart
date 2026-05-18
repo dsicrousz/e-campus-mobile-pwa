@@ -2,6 +2,7 @@ import 'package:ecampusv2/app/data/models/pub_model.dart';
 import 'package:ecampusv2/app/routes/app_pages.dart';
 import 'package:ecampusv2/app/utils/app_theme.dart';
 import 'package:ecampusv2/app/utils/responsive_utils.dart';
+import 'package:ecampusv2/env.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -245,7 +246,7 @@ class AllpubsView extends GetView<AllpubsController> {
                   topRight: Radius.circular(ResponsiveUtils.wp(4)),
                 ),
                 child: Image.network(
-                  pub.image!,
+                  "$r2Url/pubs/${pub.image!}",
                   fit: BoxFit.cover,
                   height: ResponsiveUtils.hp(20),
                   width: double.infinity,
