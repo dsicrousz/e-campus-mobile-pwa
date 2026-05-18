@@ -115,7 +115,7 @@ class PubdescriptionView extends GetView<PubdescriptionController> {
                         borderRadius:
                             BorderRadius.circular(ResponsiveUtils.wp(4)),
                         child: Image.network(
-                          "$backUrl/uploads/pubs/${arg.image!}",
+                          "$r2Url/pubs/${arg.image!}",
                           fit: BoxFit.cover,
                           loadingBuilder: (context, child, loadingProgress) {
                             if (loadingProgress == null) return child;

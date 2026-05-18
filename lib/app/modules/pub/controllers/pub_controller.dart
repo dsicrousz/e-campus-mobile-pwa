@@ -1,6 +1,7 @@
 import 'package:ecampusv2/app/data/providers/pub_provider.dart';
 import 'package:ecampusv2/app/routes/app_pages.dart';
 import 'package:ecampusv2/app/utils/responsive_utils.dart';
+import 'package:ecampusv2/env.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +30,7 @@ class PubController extends GetxController {
                         borderRadius:
                             BorderRadius.circular(ResponsiveUtils.wp(4)),
                         child: Image.network(
-                          p?.image ?? "",
+                          "$r2Url/pubs/${p?.image}",
                           fit: BoxFit.cover,
                           width: double.infinity,
                           height: double.infinity,
