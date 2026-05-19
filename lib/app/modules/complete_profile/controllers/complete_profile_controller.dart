@@ -14,26 +14,6 @@ class CompleteProfileController extends GetxController {
 
   // Informations personnelles
   final telSecondaire = ''.obs;
-  final adresse = ''.obs;
-  final ville = ''.obs;
-  final pays = ''.obs;
-  final quartier = ''.obs;
-
-  // Informations campus
-  final campus = ''.obs;
-  final residentCampus = false.obs;
-  final pavillon = ''.obs;
-  final chambre = ''.obs;
-
-  // Contact d'urgence
-  final contactUrgenceNom = ''.obs;
-  final contactUrgenceLien = ''.obs;
-  final contactUrgenceTel = ''.obs;
-
-  // Informations médicales
-  final groupeSanguin = ''.obs;
-  final allergies = <String>[].obs;
-  final allergieInput = ''.obs;
 
   // Loisirs
   final hobbies = <String>[].obs;
@@ -52,7 +32,7 @@ class CompleteProfileController extends GetxController {
   }
 
   void nextStep() {
-    if (currentStep.value < 4) {
+    if (currentStep.value < 2) {
       currentStep.value++;
     }
   }
@@ -61,17 +41,6 @@ class CompleteProfileController extends GetxController {
     if (currentStep.value > 0) {
       currentStep.value--;
     }
-  }
-
-  void addAllergie() {
-    if (allergieInput.value.isNotEmpty) {
-      allergies.add(allergieInput.value);
-      allergieInput.value = '';
-    }
-  }
-
-  void removeAllergie(int index) {
-    allergies.removeAt(index);
   }
 
   void addHobby() {
@@ -112,23 +81,6 @@ class CompleteProfileController extends GetxController {
       final data = <String, dynamic>{
         if (telSecondaire.value.isNotEmpty)
           'telSecondaire': telSecondaire.value,
-        if (adresse.value.isNotEmpty) 'adresse': adresse.value,
-        if (ville.value.isNotEmpty) 'ville': ville.value,
-        if (pays.value.isNotEmpty) 'pays': pays.value,
-        if (quartier.value.isNotEmpty) 'quartier': quartier.value,
-        if (campus.value.isNotEmpty) 'campus': campus.value,
-        'residentCampus': residentCampus.value,
-        if (pavillon.value.isNotEmpty) 'pavillon': pavillon.value,
-        if (chambre.value.isNotEmpty) 'chambre': chambre.value,
-        if (contactUrgenceNom.value.isNotEmpty)
-          'contactUrgenceNom': contactUrgenceNom.value,
-        if (contactUrgenceLien.value.isNotEmpty)
-          'contactUrgenceLien': contactUrgenceLien.value,
-        if (contactUrgenceTel.value.isNotEmpty)
-          'contactUrgenceTel': contactUrgenceTel.value,
-        if (groupeSanguin.value.isNotEmpty)
-          'groupeSanguin': groupeSanguin.value,
-        if (allergies.isNotEmpty) 'allergies': allergies.toList(),
         if (hobbies.isNotEmpty) 'hobbies': hobbies.toList(),
         'accepteConditions': accepteConditions.value,
       };

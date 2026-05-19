@@ -39,7 +39,7 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
           children: [
             // Progress indicator
             Obx(() => LinearProgressIndicator(
-                  value: (controller.currentStep.value + 1) / 5,
+                  value: (controller.currentStep.value + 1) / 3,
                   backgroundColor: Colors.grey.shade200,
                   valueColor:
                       AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
@@ -66,14 +66,10 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
   String _getStepTitle(int step) {
     switch (step) {
       case 0:
-        return 'Coordonnées';
+        return 'Informations';
       case 1:
-        return 'Campus';
+        return 'Loisirs';
       case 2:
-        return 'Contact d\'urgence';
-      case 3:
-        return 'Santé & Loisirs';
-      case 4:
         return 'Confirmation';
       default:
         return 'Profil';
@@ -85,13 +81,9 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
       case 0:
         return _buildStep1Coordonnees();
       case 1:
-        return _buildStep2Campus();
+        return _buildStep2Loisirs();
       case 2:
-        return _buildStep3ContactUrgence();
-      case 3:
-        return _buildStep4SanteLoisirs();
-      case 4:
-        return _buildStep5Confirmation();
+        return _buildStep3Confirmation();
       default:
         return const SizedBox.shrink();
     }
@@ -110,144 +102,19 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
           keyboardType: TextInputType.phone,
           onChanged: (v) => controller.telSecondaire.value = v,
         ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildTextField(
-          label: 'Adresse',
-          hint: 'Votre adresse complète',
-          icon: Icons.home_outlined,
-          onChanged: (v) => controller.adresse.value = v,
-        ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildTextField(
-          label: 'Quartier',
-          hint: 'Votre quartier',
-          icon: Icons.location_on_outlined,
-          onChanged: (v) => controller.quartier.value = v,
-        ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildTextField(
-          label: 'Ville',
-          hint: 'Votre ville',
-          icon: Icons.location_city_outlined,
-          onChanged: (v) => controller.ville.value = v,
-        ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildTextField(
-          label: 'Pays',
-          hint: 'Votre pays',
-          icon: Icons.flag_outlined,
-          onChanged: (v) => controller.pays.value = v,
-        ),
       ],
     );
   }
 
-  Widget _buildStep2Campus() {
+  Widget _buildStep2Loisirs() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle('Informations campus'),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildTextField(
-          label: 'Campus',
-          hint: 'Nom du campus',
-          icon: Icons.school_outlined,
-          onChanged: (v) => controller.campus.value = v,
-        ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildSwitchField(
-          label: 'Résident sur le campus',
-          value: controller.residentCampus,
-        ),
-        Obx(() => controller.residentCampus.value
-            ? Column(
-                children: [
-                  SizedBox(height: ResponsiveUtils.hp(2)),
-                  _buildTextField(
-                    label: 'Pavillon',
-                    hint: 'Numéro ou nom du pavillon',
-                    icon: Icons.apartment_outlined,
-                    onChanged: (v) => controller.pavillon.value = v,
-                  ),
-                  SizedBox(height: ResponsiveUtils.hp(2)),
-                  _buildTextField(
-                    label: 'Chambre',
-                    hint: 'Numéro de chambre',
-                    icon: Icons.door_front_door_outlined,
-                    onChanged: (v) => controller.chambre.value = v,
-                  ),
-                ],
-              )
-            : const SizedBox.shrink()),
-      ],
-    );
-  }
-
-  Widget _buildStep3ContactUrgence() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle('Contact d\'urgence'),
-        SizedBox(height: ResponsiveUtils.hp(1)),
-        Text(
-          'Personne à contacter en cas d\'urgence',
-          style: TextStyle(
-            fontSize: ResponsiveUtils.fontSize(13),
-            color: AppTheme.textSecondaryColor,
-          ),
-        ),
-        SizedBox(height: ResponsiveUtils.hp(3)),
-        _buildTextField(
-          label: 'Nom complet',
-          hint: 'Nom du contact d\'urgence',
-          icon: Icons.person_outline,
-          onChanged: (v) => controller.contactUrgenceNom.value = v,
-        ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildTextField(
-          label: 'Lien de parenté',
-          hint: 'Ex: Père, Mère, Tuteur...',
-          icon: Icons.family_restroom_outlined,
-          onChanged: (v) => controller.contactUrgenceLien.value = v,
-        ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildTextField(
-          label: 'Téléphone',
-          hint: '+221 XX XXX XX XX',
-          icon: Icons.phone_outlined,
-          keyboardType: TextInputType.phone,
-          onChanged: (v) => controller.contactUrgenceTel.value = v,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildStep4SanteLoisirs() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle('Informations médicales'),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildDropdownField(
-          label: 'Groupe sanguin',
-          value: controller.groupeSanguin,
-          items: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
-        ),
-        SizedBox(height: ResponsiveUtils.hp(2)),
-        _buildChipInputField(
-          label: 'Allergies',
-          hint: 'Ajouter une allergie',
-          items: controller.allergies,
-          inputValue: controller.allergieInput,
-          onAdd: controller.addAllergie,
-          onRemove: controller.removeAllergie,
-        ),
-        SizedBox(height: ResponsiveUtils.hp(3)),
         _buildSectionTitle('Loisirs'),
         SizedBox(height: ResponsiveUtils.hp(2)),
         _buildChipInputField(
           label: 'Hobbies',
-          hint: 'Ajouter un hobby',
+          hint: 'Ajouter un hobby (ex: Lecture, Sport, Musique)',
           items: controller.hobbies,
           inputValue: controller.hobbyInput,
           onAdd: controller.addHobby,
@@ -257,7 +124,7 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
     );
   }
 
-  Widget _buildStep5Confirmation() {
+  Widget _buildStep3Confirmation() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -337,7 +204,7 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
         ],
       ),
       child: Obx(() {
-        final isLastStep = controller.currentStep.value == 4;
+        final isLastStep = controller.currentStep.value == 2;
         return SizedBox(
           width: double.infinity,
           height: ResponsiveUtils.hp(6),
@@ -439,94 +306,6 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
               ),
             ),
           ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSwitchField({
-    required String label,
-    required RxBool value,
-  }) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: ResponsiveUtils.wp(4),
-        vertical: ResponsiveUtils.hp(1),
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Obx(() => SwitchListTile(
-            title: Text(
-              label,
-              style: TextStyle(
-                fontSize: ResponsiveUtils.fontSize(15),
-                color: AppTheme.textPrimaryColor,
-              ),
-            ),
-            value: value.value,
-            onChanged: (v) => value.value = v,
-            activeColor: AppTheme.primaryColor,
-            contentPadding: EdgeInsets.zero,
-          )),
-    );
-  }
-
-  Widget _buildDropdownField({
-    required String label,
-    required RxString value,
-    required List<String> items,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: ResponsiveUtils.fontSize(14),
-            fontWeight: FontWeight.w600,
-            color: AppTheme.textPrimaryColor,
-          ),
-        ),
-        SizedBox(height: ResponsiveUtils.hp(0.8)),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: ResponsiveUtils.wp(4)),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: Obx(() => DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  isExpanded: true,
-                  value: value.value.isEmpty ? null : value.value,
-                  hint: Text(
-                    'Sélectionner',
-                    style: TextStyle(
-                      color: Colors.grey.shade400,
-                      fontSize: ResponsiveUtils.fontSize(14),
-                    ),
-                  ),
-                  items: items
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                      .toList(),
-                  onChanged: (v) => value.value = v ?? '',
-                ),
-              )),
         ),
       ],
     );

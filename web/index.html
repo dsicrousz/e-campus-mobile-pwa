@@ -21,7 +21,7 @@
   <meta name="description" content="A new Flutter project.">
 
   <!-- iOS meta tags & icons -->
-  <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="ecampusv2">
@@ -33,6 +33,44 @@
   <title>ecampusv2</title>
   <link rel="manifest" href="manifest.json">
 
+  <style>
+    #pwa-install-banner {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+      font-family: Arial, sans-serif;
+    }
+
+    #pwa-install-banner p {
+      margin: 0;
+      color: #111827;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    #pwa-install-banner button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: #ffffff;
+      background: #0f766e;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+  </style>
+
   <script>
     // The values below are injected by flutter build, do not touch.
     {{flutter_js}}
@@ -41,6 +79,37 @@
   </script>
 </head>
 <body>
+  <div id="pwa-install-banner">
+    <p>Installer E-campus sur votre appareil</p>
+    <button id="pwa-install-button" type="button">Installer</button>
+  </div>
+
+  <script>
+    let deferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      document.getElementById('pwa-install-banner').style.display = 'flex';
+    });
+
+    document.getElementById('pwa-install-button').addEventListener('click', async () => {
+      if (!deferredInstallPrompt) {
+        return;
+      }
+
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      document.getElementById('pwa-install-banner').style.display = 'none';
+    });
+
+    window.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      document.getElementById('pwa-install-banner').style.display = 'none';
+    });
+  </script>
+
   <script>
     {{flutter_bootstrap_js}}
   </script>
