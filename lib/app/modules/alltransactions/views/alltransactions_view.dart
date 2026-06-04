@@ -18,16 +18,25 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
     ResponsiveUtils.init(context);
 
     return Scaffold(
-      backgroundColor: Colors.white.withValues(alpha: 0.98),
+      backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppTheme.primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+            ),
+          ),
+        ),
         elevation: 0,
         title: Text(
           'Mes Transactions',
           style: TextStyle(
             color: Colors.white,
             fontSize: ResponsiveUtils.fontSize(18),
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         centerTitle: true,
@@ -63,15 +72,9 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
                 margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(2)),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+                  border: Border.all(color: AppTheme.borderColor, width: 1),
+                  boxShadow: AppTheme.cardShadow,
                 ),
                 child: TextField(
                   onChanged: (value) => controller.onQueryChange(value),
@@ -82,7 +85,7 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
                   decoration: InputDecoration(
                     hintText: "Rechercher une transaction",
                     hintStyle: TextStyle(
-                      color: Colors.grey.withValues(alpha: 0.7),
+                      color: AppTheme.textSecondaryColor,
                       fontSize: ResponsiveUtils.fontSize(14),
                     ),
                     prefixIcon: Icon(
@@ -154,17 +157,11 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
                                     bottom: ResponsiveUtils.hp(1.5)),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(
-                                      ResponsiveUtils.wp(3)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          Colors.black.withValues(alpha: 0.03),
-                                      blurRadius: 6,
-                                      spreadRadius: 0,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
+                                  borderRadius:
+                                      BorderRadius.circular(AppTheme.radiusMd),
+                                  border: Border.all(
+                                      color: AppTheme.borderColor, width: 1),
+                                  boxShadow: AppTheme.softShadow,
                                 ),
                                 child: Material(
                                   color: Colors.transparent,
@@ -185,10 +182,10 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: op.type == "RECHARGE"
-                                                  ? Colors.green
+                                                  ? AppTheme.successColor
                                                       .withValues(alpha: 0.8)
                                                   : op.type == "UTILISATION"
-                                                      ? Colors.orange
+                                                      ? AppTheme.warningColor
                                                           .withValues(
                                                               alpha: 0.8)
                                                       : op.type == "TRANSFERT"
@@ -196,7 +193,8 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
                                                               .primaryColor
                                                               .withValues(
                                                                   alpha: 0.8)
-                                                          : Colors.grey
+                                                          : AppTheme
+                                                              .textSecondaryColor
                                                               .withValues(
                                                                   alpha: 0.8),
                                               boxShadow: [
@@ -280,13 +278,13 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
                                             ),
                                             decoration: BoxDecoration(
                                               color: (op.montant ?? 0) >= 0
-                                                  ? Colors.green
+                                                  ? AppTheme.successColor
                                                       .withValues(alpha: 0.1)
-                                                  : Colors.red
+                                                  : AppTheme.errorColor
                                                       .withValues(alpha: 0.1),
                                               borderRadius:
                                                   BorderRadius.circular(
-                                                      ResponsiveUtils.wp(2)),
+                                                      AppTheme.radiusMd),
                                             ),
                                             child: Text(
                                               "${op.montant ?? 0} F",
@@ -294,12 +292,10 @@ class AlltransactionsView extends GetView<AlltransactionsController> {
                                                 fontSize:
                                                     ResponsiveUtils.fontSize(
                                                         14),
-                                                fontWeight: FontWeight.bold,
+                                                fontWeight: FontWeight.w600,
                                                 color: (op.montant ?? 0) >= 0
-                                                    ? Colors.green
-                                                        .withValues(alpha: 0.8)
-                                                    : Colors.red
-                                                        .withValues(alpha: 0.8),
+                                                    ? AppTheme.successColor
+                                                    : AppTheme.errorColor,
                                               ),
                                             ),
                                           ),

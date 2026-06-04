@@ -8,12 +8,12 @@ import '../controllers/pub_controller.dart';
 
 class PubView extends GetView<PubController> {
   const PubView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     // Initialisation des utilitaires responsifs
     ResponsiveUtils.init(context);
-    
+
     return Obx(
       () => controller.pages.isNotEmpty
           ? Container(
@@ -26,7 +26,8 @@ class PubView extends GetView<PubController> {
                   // Titre de la section
                   Container(
                     margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(1)),
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveUtils.wp(4)),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: ResponsiveUtils.wp(4)),
                     child: Row(
                       children: [
                         Icon(
@@ -39,7 +40,7 @@ class PubView extends GetView<PubController> {
                           "Annonces",
                           style: TextStyle(
                             fontSize: ResponsiveUtils.fontSize(16),
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: AppTheme.textPrimaryColor,
                           ),
                         ),
@@ -67,34 +68,32 @@ class PubView extends GetView<PubController> {
                             ),
                             foregroundColor: AppTheme.primaryColor,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
+                              borderRadius:
+                                  BorderRadius.circular(AppTheme.radiusMd),
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  
+
                   // Carousel avec ombre
                   Container(
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.05),
-                          blurRadius: 10,
-                          spreadRadius: 0,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
+                      boxShadow: AppTheme.cardShadow,
                     ),
                     child: CarouselSlider(
                       items: controller.pages.map((page) {
                         // Ajouter un container avec des coins arrondis autour de chaque élément
                         return Container(
-                          margin: EdgeInsets.symmetric(horizontal: ResponsiveUtils.wp(1)),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: ResponsiveUtils.wp(1)),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
+                            borderRadius:
+                                BorderRadius.circular(AppTheme.radiusLg),
                             color: Colors.white,
+                            border: Border.all(
+                                color: AppTheme.borderColor, width: 1),
                           ),
                           clipBehavior: Clip.antiAlias,
                           child: page,
@@ -109,7 +108,8 @@ class PubView extends GetView<PubController> {
                         reverse: false,
                         autoPlay: true,
                         autoPlayInterval: const Duration(seconds: 5),
-                        autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                        autoPlayAnimationDuration:
+                            const Duration(milliseconds: 800),
                         autoPlayCurve: Curves.fastOutSlowIn,
                         enlargeCenterPage: true,
                         enlargeFactor: 0.2,
@@ -117,27 +117,6 @@ class PubView extends GetView<PubController> {
                       ),
                     ),
                   ),
-                  
-                  // Indicateurs de page simplifiés
-                  if (controller.pages.length > 1)
-                    Container(
-                      margin: EdgeInsets.only(top: ResponsiveUtils.hp(1.5)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          controller.pages.length,
-                          (index) => Container(
-                            width: ResponsiveUtils.wp(2),
-                            height: ResponsiveUtils.hp(1),
-                            margin: EdgeInsets.symmetric(horizontal: 4),
-                            decoration: BoxDecoration(
-                              color: AppTheme.primaryColor.withValues(alpha: index == 0 ? 1.0 : 0.3),
-                              borderRadius: BorderRadius.circular(ResponsiveUtils.wp(1)),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                 ],
               ),
             )

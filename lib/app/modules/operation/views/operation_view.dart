@@ -23,20 +23,20 @@ class OperationView extends GetView<OperationController> {
 
     // Couleurs en fonction du type d'opération
     final Color primaryColor = isRecharge
-        ? Colors.green
+        ? AppTheme.successColor
         : isUtilisation
-            ? Colors.orange
+            ? AppTheme.warningColor
             : isTransfert
                 ? AppTheme.primaryColor
-                : Colors.grey;
+                : AppTheme.textSecondaryColor;
 
     final Color lightColor = isRecharge
-        ? Colors.green.shade100
+        ? AppTheme.successColor.withValues(alpha: 0.1)
         : isUtilisation
-            ? Colors.orange.shade100
+            ? AppTheme.warningColor.withValues(alpha: 0.1)
             : isTransfert
-                ? AppTheme.primaryColor.withValues(alpha: 0.15)
-                : Colors.grey.shade100;
+                ? AppTheme.primaryColor.withValues(alpha: 0.1)
+                : AppTheme.textSecondaryColor.withValues(alpha: 0.1);
 
     // Icône en fonction du type d'opération
     final IconData operationIcon = isRecharge
@@ -86,15 +86,9 @@ class OperationView extends GetView<OperationController> {
                   margin: EdgeInsets.symmetric(vertical: ResponsiveUtils.hp(2)),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(ResponsiveUtils.wp(6)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 15,
-                        spreadRadius: 1,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(AppTheme.radiusXl),
+                    border: Border.all(color: AppTheme.borderColor, width: 1),
+                    boxShadow: AppTheme.cardShadow,
                   ),
                   child: Column(
                     children: [
@@ -111,8 +105,8 @@ class OperationView extends GetView<OperationController> {
                             ],
                           ),
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(ResponsiveUtils.wp(6)),
-                            topRight: Radius.circular(ResponsiveUtils.wp(6)),
+                            topLeft: Radius.circular(AppTheme.radiusXl),
+                            topRight: Radius.circular(AppTheme.radiusXl),
                           ),
                         ),
                         child: Row(
@@ -245,7 +239,9 @@ class OperationView extends GetView<OperationController> {
                   padding: EdgeInsets.all(ResponsiveUtils.wp(5)),
                   decoration: BoxDecoration(
                     color: lightColor,
-                    borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
+                    borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+                    border:
+                        Border.all(color: primaryColor.withValues(alpha: 0.2)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -57,7 +57,16 @@ class LoginView extends GetView<LoginController> {
     );
     return Scaffold(
         body: Container(
-      color: AppTheme.backgroundColor,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            AppTheme.backgroundColor,
+            Color(0xFFF1F5F9),
+          ],
+        ),
+      ),
       child: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -111,21 +120,8 @@ class LoginView extends GetView<LoginController> {
                   },
                   child: Container(
                     padding: EdgeInsets.all(ResponsiveUtils.wp(6)),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.circular(ResponsiveUtils.wp(6)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.08),
-                          blurRadius: 20,
-                          spreadRadius: 0,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
                     child: Image(
-                      image: const AssetImage("assets/logo2.jpeg"),
+                      image: const AssetImage("logo_noir.png"),
                       width: ResponsiveUtils.wp(50),
                     ),
                   ),
@@ -134,16 +130,6 @@ class LoginView extends GetView<LoginController> {
                 SizedBox(height: ResponsiveUtils.hp(2)),
 
                 // Titre de bienvenue
-                Text(
-                  "Bienvenue sur E-Campus",
-                  style: TextStyle(
-                    fontSize: ResponsiveUtils.fontSize(26),
-                    fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor,
-                    letterSpacing: 0.5,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
 
                 SizedBox(height: ResponsiveUtils.hp(1)),
 
@@ -155,8 +141,8 @@ class LoginView extends GetView<LoginController> {
                         : "Connectez-vous avec votre numéro de carte sociale",
                     style: TextStyle(
                       fontSize: ResponsiveUtils.fontSize(15),
-                      color: AppTheme.textSecondaryColor,
-                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -549,17 +535,11 @@ class LoginView extends GetView<LoginController> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
-                                  BorderRadius.circular(ResponsiveUtils.wp(6)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.06),
-                                  blurRadius: 20,
-                                  offset: const Offset(0, 6),
-                                ),
-                              ],
+                                  BorderRadius.circular(AppTheme.radiusLg),
+                              boxShadow: AppTheme.cardShadow,
                               border: Border.all(
-                                color: AppTheme.primaryColor
-                                    .withValues(alpha: 0.12),
+                                color: AppTheme.borderColor,
+                                width: 1,
                               ),
                             ),
                             child: Column(
@@ -573,8 +553,10 @@ class LoginView extends GetView<LoginController> {
                                         const Icon(Icons.badge_outlined),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(
-                                          ResponsiveUtils.wp(4)),
+                                          AppTheme.radiusMd),
                                     ),
+                                    filled: true,
+                                    fillColor: AppTheme.surfaceColor,
                                   ),
                                 ),
                                 SizedBox(height: ResponsiveUtils.hp(2)),
@@ -587,8 +569,10 @@ class LoginView extends GetView<LoginController> {
                                     prefixIcon: const Icon(Icons.lock_outline),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(
-                                          ResponsiveUtils.wp(4)),
+                                          AppTheme.radiusMd),
                                     ),
+                                    filled: true,
+                                    fillColor: AppTheme.surfaceColor,
                                   ),
                                 ),
                                 SizedBox(height: ResponsiveUtils.hp(3)),
@@ -599,12 +583,13 @@ class LoginView extends GetView<LoginController> {
                                       backgroundColor: AppTheme.primaryColor,
                                       foregroundColor: Colors.white,
                                       padding: EdgeInsets.symmetric(
-                                        vertical: ResponsiveUtils.hp(1.6),
+                                        vertical: ResponsiveUtils.hp(2),
                                       ),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(
-                                            ResponsiveUtils.wp(4)),
+                                            AppTheme.radiusMd),
                                       ),
+                                      elevation: 0,
                                     ),
                                     onPressed: () {
                                       final ncs = controller.ncs.value.trim();
@@ -614,7 +599,8 @@ class LoginView extends GetView<LoginController> {
                                       if (ncs.isEmpty || pass.isEmpty) {
                                         Get.snackbar('Login Message',
                                             'Veuillez saisir votre NCS et votre mot de passe',
-                                            backgroundColor: Colors.red,
+                                            backgroundColor:
+                                                AppTheme.errorColor,
                                             colorText: Colors.white);
                                         return;
                                       }
@@ -623,7 +609,8 @@ class LoginView extends GetView<LoginController> {
                                           controller.validatePassword(pass);
                                       if (passError != null) {
                                         Get.snackbar('Login Message', passError,
-                                            backgroundColor: Colors.red,
+                                            backgroundColor:
+                                                AppTheme.errorColor,
                                             colorText: Colors.white);
                                         return;
                                       }
@@ -634,8 +621,8 @@ class LoginView extends GetView<LoginController> {
                                       "SE CONNECTER",
                                       style: TextStyle(
                                         fontSize: ResponsiveUtils.fontSize(15),
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 0.5,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 0.3,
                                       ),
                                     ),
                                   ),

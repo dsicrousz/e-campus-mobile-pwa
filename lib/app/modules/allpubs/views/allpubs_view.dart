@@ -20,16 +20,25 @@ class AllpubsView extends GetView<AllpubsController> {
     ResponsiveUtils.init(context);
 
     return Scaffold(
-      backgroundColor: Colors.white.withValues(alpha: 0.98),
+      backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppTheme.primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+            ),
+          ),
+        ),
         elevation: 0,
         title: Text(
           'Toutes les annonces',
           style: TextStyle(
             color: Colors.white,
             fontSize: ResponsiveUtils.fontSize(18),
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         centerTitle: true,
@@ -128,12 +137,13 @@ class AllpubsView extends GetView<AllpubsController> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primaryColor,
                 foregroundColor: Colors.white,
+                elevation: 0,
                 padding: EdgeInsets.symmetric(
                   horizontal: ResponsiveUtils.wp(6),
                   vertical: ResponsiveUtils.hp(1.5),
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(2)),
+                  borderRadius: BorderRadius.circular(AppTheme.radiusMd),
                 ),
               ),
             ),
@@ -179,12 +189,13 @@ class AllpubsView extends GetView<AllpubsController> {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppTheme.primaryColor,
               foregroundColor: Colors.white,
+              elevation: 0,
               padding: EdgeInsets.symmetric(
                 horizontal: ResponsiveUtils.wp(6),
                 vertical: ResponsiveUtils.hp(1.5),
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(ResponsiveUtils.wp(2)),
+                borderRadius: BorderRadius.circular(AppTheme.radiusMd),
               ),
             ),
           ),
@@ -220,15 +231,9 @@ class AllpubsView extends GetView<AllpubsController> {
       margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(2)),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            offset: const Offset(0, 2),
-            blurRadius: 8,
-            spreadRadius: 0,
-          ),
-        ],
+        borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+        border: Border.all(color: AppTheme.borderColor, width: 1),
+        boxShadow: AppTheme.cardShadow,
       ),
       child: Material(
         color: Colors.transparent,
@@ -340,7 +345,7 @@ class AllpubsView extends GetView<AllpubsController> {
       context: context,
       builder: (context) => Dialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
+          borderRadius: BorderRadius.circular(AppTheme.radiusLg),
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -351,14 +356,8 @@ class AllpubsView extends GetView<AllpubsController> {
           ),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 10,
-                spreadRadius: 1,
-              ),
-            ],
+            borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+            boxShadow: AppTheme.cardShadow,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -378,13 +377,13 @@ class AllpubsView extends GetView<AllpubsController> {
                   hintText: 'Entrez un mot clé...',
                   prefixIcon: Icon(Icons.search, color: AppTheme.primaryColor),
                   filled: true,
-                  fillColor: Colors.grey.shade100,
+                  fillColor: AppTheme.surfaceColor,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(ResponsiveUtils.wp(2)),
+                    borderRadius: BorderRadius.circular(AppTheme.radiusMd),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(ResponsiveUtils.wp(2)),
+                    borderRadius: BorderRadius.circular(AppTheme.radiusMd),
                     borderSide:
                         BorderSide(color: AppTheme.primaryColor, width: 1.5),
                   ),
@@ -419,8 +418,7 @@ class AllpubsView extends GetView<AllpubsController> {
                       foregroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(ResponsiveUtils.wp(2)),
+                        borderRadius: BorderRadius.circular(AppTheme.radiusMd),
                       ),
                       padding: EdgeInsets.symmetric(
                         horizontal: ResponsiveUtils.wp(4),

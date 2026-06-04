@@ -27,6 +27,15 @@ class AcceuilView extends GetView<AcceuilController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppTheme.primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+            ),
+          ),
+        ),
         centerTitle: true,
         title: Text(
           "Solde Disponible",
@@ -97,17 +106,24 @@ class AcceuilView extends GetView<AcceuilController> {
                 ),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppTheme.primaryColor,
+                      AppTheme.primaryDark,
+                    ],
+                  ),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(ResponsiveUtils.wp(8)),
                     bottomRight: Radius.circular(ResponsiveUtils.wp(8)),
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
-                      blurRadius: 10,
+                      color: AppTheme.primaryColor.withValues(alpha: 0.25),
+                      blurRadius: 20,
                       spreadRadius: 0,
-                      offset: const Offset(0, 5),
+                      offset: const Offset(0, 10),
                     ),
                   ],
                 ),
@@ -357,26 +373,8 @@ class AcceuilView extends GetView<AcceuilController> {
                 ),
               ),
               // Section des publicités
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: ResponsiveUtils.hp(2),
-                  horizontal: ResponsiveUtils.wp(3),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(ResponsiveUtils.wp(2)),
-                child: const PubView(),
-              ),
+
+              const PubView(),
 
               Container(
                 margin: EdgeInsets.symmetric(

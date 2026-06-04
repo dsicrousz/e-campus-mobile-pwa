@@ -27,7 +27,11 @@ class VirementView extends GetView<VirementController> {
                   vertical: ResponsiveUtils.hp(2),
                 ),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: AppTheme.primaryColor.withValues(alpha: 0.3),
@@ -165,20 +169,12 @@ class VirementView extends GetView<VirementController> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius:
-                                BorderRadius.circular(ResponsiveUtils.wp(5)),
+                                BorderRadius.circular(AppTheme.radiusLg),
                             border: Border.all(
-                              color:
-                                  AppTheme.primaryColor.withValues(alpha: 0.1),
+                              color: AppTheme.borderColor,
                               width: 1,
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.08),
-                                blurRadius: 15,
-                                spreadRadius: 0,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
+                            boxShadow: AppTheme.cardShadow,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,13 +211,11 @@ class VirementView extends GetView<VirementController> {
                               SizedBox(height: ResponsiveUtils.hp(1.5)),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: AppTheme.backgroundColor
-                                      .withValues(alpha: 0.3),
-                                  borderRadius: BorderRadius.circular(
-                                      ResponsiveUtils.wp(3)),
+                                  color: AppTheme.surfaceColor,
+                                  borderRadius:
+                                      BorderRadius.circular(AppTheme.radiusMd),
                                   border: Border.all(
-                                    color: AppTheme.primaryColor
-                                        .withValues(alpha: 0.2),
+                                    color: AppTheme.borderColor,
                                     width: 1.5,
                                   ),
                                 ),
@@ -236,7 +230,7 @@ class VirementView extends GetView<VirementController> {
                                   decoration: InputDecoration(
                                     hintText: 'Ex: 2024-0000',
                                     hintStyle: TextStyle(
-                                      color: Colors.grey.withValues(alpha: 0.6),
+                                      color: AppTheme.textSecondaryColor,
                                       fontSize: ResponsiveUtils.fontSize(14),
                                     ),
                                     prefixIcon: Icon(
@@ -287,13 +281,11 @@ class VirementView extends GetView<VirementController> {
                               SizedBox(height: ResponsiveUtils.hp(1.5)),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: AppTheme.backgroundColor
-                                      .withValues(alpha: 0.3),
-                                  borderRadius: BorderRadius.circular(
-                                      ResponsiveUtils.wp(3)),
+                                  color: AppTheme.surfaceColor,
+                                  borderRadius:
+                                      BorderRadius.circular(AppTheme.radiusMd),
                                   border: Border.all(
-                                    color: AppTheme.secondaryColor
-                                        .withValues(alpha: 0.2),
+                                    color: AppTheme.borderColor,
                                     width: 1.5,
                                   ),
                                 ),
@@ -314,7 +306,7 @@ class VirementView extends GetView<VirementController> {
                                   decoration: InputDecoration(
                                     hintText: '0',
                                     hintStyle: TextStyle(
-                                      color: Colors.grey.withValues(alpha: 0.6),
+                                      color: AppTheme.textSecondaryColor,
                                       fontSize: ResponsiveUtils.fontSize(18),
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -352,19 +344,20 @@ class VirementView extends GetView<VirementController> {
                               ),
                               padding: EdgeInsets.all(ResponsiveUtils.wp(3)),
                               decoration: BoxDecoration(
-                                color: Colors.red.withValues(alpha: 0.05),
+                                color:
+                                    AppTheme.errorColor.withValues(alpha: 0.08),
                                 borderRadius:
-                                    BorderRadius.circular(ResponsiveUtils.wp(2)),
+                                    BorderRadius.circular(AppTheme.radiusMd),
                                 border: Border.all(
-                                  color: Colors.red.withValues(alpha: 0.3),
-                                  width: 1,
+                                  color: AppTheme.errorColor
+                                      .withValues(alpha: 0.2),
                                 ),
                               ),
                               child: Row(
                                 children: [
                                   Icon(
                                     Icons.error_outline_rounded,
-                                    color: Colors.red,
+                                    color: AppTheme.errorColor,
                                     size: ResponsiveUtils.wp(5),
                                   ),
                                   SizedBox(width: ResponsiveUtils.wp(2)),
@@ -373,7 +366,7 @@ class VirementView extends GetView<VirementController> {
                                       "Solde insuffisant. Votre solde actuel est de ${controller.acceuilController.compte.solde ?? 0} FCFA",
                                       style: TextStyle(
                                         fontSize: ResponsiveUtils.fontSize(13),
-                                        color: Colors.red.shade700,
+                                        color: AppTheme.errorColor,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -395,22 +388,15 @@ class VirementView extends GetView<VirementController> {
                               width: double.infinity,
                               height: ResponsiveUtils.hp(7),
                               decoration: BoxDecoration(
+                                gradient:
+                                    isValid ? AppTheme.primaryGradient : null,
                                 color: isValid
-                                    ? AppTheme.primaryColor
-                                    : Colors.grey.shade400,
-                                borderRadius: BorderRadius.circular(
-                                    ResponsiveUtils.wp(4)),
-                                boxShadow: isValid
-                                    ? [
-                                        BoxShadow(
-                                          color: AppTheme.primaryColor
-                                              .withValues(alpha: 0.4),
-                                          blurRadius: 15,
-                                          spreadRadius: 0,
-                                          offset: const Offset(0, 6),
-                                        ),
-                                      ]
-                                    : [],
+                                    ? null
+                                    : AppTheme.textSecondaryColor
+                                        .withValues(alpha: 0.3),
+                                borderRadius:
+                                    BorderRadius.circular(AppTheme.radiusMd),
+                                boxShadow: isValid ? AppTheme.buttonShadow : [],
                               ),
                               child: ElevatedButton(
                                 onPressed: isValid ? controller.send : null,
@@ -424,7 +410,7 @@ class VirementView extends GetView<VirementController> {
                                       Colors.white.withValues(alpha: 0.7),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
-                                        ResponsiveUtils.wp(4)),
+                                        AppTheme.radiusMd),
                                   ),
                                 ),
                                 child: Row(

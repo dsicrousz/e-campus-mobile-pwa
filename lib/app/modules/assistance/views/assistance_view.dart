@@ -14,16 +14,25 @@ class AssistanceView extends GetView<AssistanceController> {
     ResponsiveUtils.init(context);
 
     return Scaffold(
-      backgroundColor: Colors.white.withValues(alpha: 0.98),
+      backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppTheme.primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+            ),
+          ),
+        ),
         elevation: 0,
         title: Text(
           'Assistance',
           style: TextStyle(
             color: Colors.white,
             fontSize: ResponsiveUtils.fontSize(18),
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         centerTitle: true,
@@ -68,15 +77,8 @@ class AssistanceView extends GetView<AssistanceController> {
                   margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(4)),
                   decoration: BoxDecoration(
                     color: AppTheme.primaryColor.withValues(alpha: 0.05),
-                    borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 10,
-                        spreadRadius: 0,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+                    boxShadow: AppTheme.softShadow,
                   ),
                   child: Icon(
                     Icons.headset_mic,
@@ -105,15 +107,9 @@ class AssistanceView extends GetView<AssistanceController> {
                 margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(2)),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+                  border: Border.all(color: AppTheme.borderColor, width: 1),
+                  boxShadow: AppTheme.cardShadow,
                 ),
                 child: Column(
                   children: [
@@ -253,7 +249,9 @@ class AssistanceView extends GetView<AssistanceController> {
                 margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(2)),
                 decoration: BoxDecoration(
                   color: AppTheme.primaryColor.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
+                  borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+                  border: Border.all(
+                      color: AppTheme.primaryColor.withValues(alpha: 0.1)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

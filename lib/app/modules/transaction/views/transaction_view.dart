@@ -50,12 +50,12 @@ class TransactionView extends GetView<TransactionController> {
 
                 // Couleurs en fonction du type d'opération
                 final Color primaryColor = isRecharge
-                    ? Colors.green
+                    ? AppTheme.successColor
                     : isUtilisation
-                        ? Colors.orange
+                        ? AppTheme.warningColor
                         : isTransfert
                             ? AppTheme.primaryColor
-                            : Colors.grey;
+                            : AppTheme.textSecondaryColor;
 
                 // Icône en fonction du type d'opération
                 final IconData operationIcon = isRecharge
@@ -70,21 +70,14 @@ class TransactionView extends GetView<TransactionController> {
                   margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(1.5)),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 8,
-                        spreadRadius: 0,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+                    border: Border.all(color: AppTheme.borderColor, width: 1),
+                    boxShadow: AppTheme.softShadow,
                   ),
                   child: Material(
                     color: Colors.transparent,
                     child: InkWell(
-                      borderRadius:
-                          BorderRadius.circular(ResponsiveUtils.wp(3)),
+                      borderRadius: BorderRadius.circular(AppTheme.radiusMd),
                       onTap: () => Get.toNamed(Routes.OPERATION, arguments: op),
                       splashColor: primaryColor.withValues(alpha: 0.1),
                       highlightColor: primaryColor.withValues(alpha: 0.05),
@@ -318,18 +311,20 @@ class TransactionView extends GetView<TransactionController> {
                           foregroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(
                             horizontal: ResponsiveUtils.wp(6),
-                            vertical: ResponsiveUtils.hp(1.2),
+                            vertical: ResponsiveUtils.hp(1.5),
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.circular(ResponsiveUtils.wp(5)),
+                                BorderRadius.circular(AppTheme.radiusMd),
                           ),
+                          elevation: 0,
                         ),
                         child: Text(
                           "Actualiser",
                           style: TextStyle(
                             fontSize: ResponsiveUtils.fontSize(14),
                             fontWeight: FontWeight.w600,
+                            letterSpacing: 0.3,
                           ),
                         ),
                       ),

@@ -25,23 +25,16 @@ class PasswordUpdateView extends GetView<PasswordUpdateController> {
         fontWeight: FontWeight.w600,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: AppTheme.primaryColor.withValues(alpha: 0.5)),
-        borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 5,
-            spreadRadius: 1,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        color: AppTheme.surfaceColor,
+        border: Border.all(color: AppTheme.borderColor),
+        borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+        boxShadow: AppTheme.softShadow,
       ),
     );
 
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
       border: Border.all(color: AppTheme.primaryColor, width: 2),
-      borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
+      borderRadius: BorderRadius.circular(AppTheme.radiusMd),
       boxShadow: [
         BoxShadow(
           color: AppTheme.primaryColor.withValues(alpha: 0.3),
@@ -56,21 +49,30 @@ class PasswordUpdateView extends GetView<PasswordUpdateController> {
       decoration: defaultPinTheme.decoration!.copyWith(
         color: AppTheme.primaryColor.withValues(alpha: 0.1),
         border: Border.all(color: AppTheme.primaryColor),
-        borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
+        borderRadius: BorderRadius.circular(AppTheme.radiusMd),
       ),
     );
 
     return Scaffold(
-      backgroundColor: Colors.white.withValues(alpha: 0.98),
+      backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppTheme.primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+            ),
+          ),
+        ),
         elevation: 0,
         title: Text(
           'Modification du Code Secret',
           style: TextStyle(
             color: Colors.white,
             fontSize: ResponsiveUtils.fontSize(18),
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         centerTitle: true,
@@ -114,15 +116,8 @@ class PasswordUpdateView extends GetView<PasswordUpdateController> {
                         decoration: BoxDecoration(
                           color: AppTheme.primaryColor.withValues(alpha: 0.05),
                           borderRadius:
-                              BorderRadius.circular(ResponsiveUtils.wp(4)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.05),
-                              blurRadius: 10,
-                              spreadRadius: 0,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
+                              BorderRadius.circular(AppTheme.radiusLg),
+                          boxShadow: AppTheme.softShadow,
                         ),
                         child: Icon(
                           Icons.lock,
@@ -155,15 +150,9 @@ class PasswordUpdateView extends GetView<PasswordUpdateController> {
                 ),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+                  border: Border.all(color: AppTheme.borderColor, width: 1),
+                  boxShadow: AppTheme.cardShadow,
                 ),
                 child: Center(
                   child: Pinput(
@@ -204,15 +193,9 @@ class PasswordUpdateView extends GetView<PasswordUpdateController> {
                 ),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+                  border: Border.all(color: AppTheme.borderColor, width: 1),
+                  boxShadow: AppTheme.cardShadow,
                 ),
                 child: Center(
                   child: Pinput(
@@ -240,21 +223,20 @@ class PasswordUpdateView extends GetView<PasswordUpdateController> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.primaryColor,
                     foregroundColor: Colors.white,
-                    elevation: 2,
+                    elevation: 0,
                     padding: EdgeInsets.symmetric(
                       vertical: ResponsiveUtils.hp(2),
                     ),
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(ResponsiveUtils.wp(3)),
+                      borderRadius: BorderRadius.circular(AppTheme.radiusMd),
                     ),
                   ),
                   child: Text(
                     'VALIDER LE CHANGEMENT',
                     style: TextStyle(
                       fontSize: ResponsiveUtils.fontSize(15),
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.5,
                     ),
                   ),
                 ),

@@ -16,13 +16,22 @@ class QrpageView extends GetView<QrpageController> {
       backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppTheme.primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+            ),
+          ),
+        ),
         elevation: 0,
         title: const Text(
           'Mon Code QR',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w700,
             letterSpacing: 0.5,
           ),
         ),
@@ -80,15 +89,9 @@ class QrpageView extends GetView<QrpageController> {
                   padding: EdgeInsets.all(ResponsiveUtils.wp(6)),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppTheme.primaryColor.withValues(alpha: 0.08),
-                        blurRadius: 20,
-                        spreadRadius: 0,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(AppTheme.radiusXl),
+                    border: Border.all(color: AppTheme.borderColor, width: 1),
+                    boxShadow: AppTheme.cardShadow,
                   ),
                   child: Column(
                     children: [
@@ -196,8 +199,12 @@ class QrpageView extends GetView<QrpageController> {
                           vertical: ResponsiveUtils.hp(1),
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.green.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(12),
+                          color: AppTheme.successColor.withValues(alpha: 0.1),
+                          borderRadius:
+                              BorderRadius.circular(AppTheme.radiusMd),
+                          border: Border.all(
+                            color: AppTheme.successColor.withValues(alpha: 0.2),
+                          ),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -205,7 +212,7 @@ class QrpageView extends GetView<QrpageController> {
                             Icon(
                               Icons.verified_user_rounded,
                               size: ResponsiveUtils.fontSize(16),
-                              color: Colors.green,
+                              color: AppTheme.successColor,
                             ),
                             SizedBox(width: ResponsiveUtils.wp(2)),
                             Text(
@@ -213,7 +220,7 @@ class QrpageView extends GetView<QrpageController> {
                               style: TextStyle(
                                 fontSize: ResponsiveUtils.fontSize(13),
                                 fontWeight: FontWeight.w600,
-                                color: Colors.green.shade700,
+                                color: AppTheme.successColor,
                               ),
                             ),
                           ],
@@ -229,10 +236,10 @@ class QrpageView extends GetView<QrpageController> {
                 Container(
                   padding: EdgeInsets.all(ResponsiveUtils.wp(4)),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade50,
-                    borderRadius: BorderRadius.circular(16),
+                    color: AppTheme.infoColor.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(AppTheme.radiusLg),
                     border: Border.all(
-                      color: Colors.blue.shade100,
+                      color: AppTheme.infoColor.withValues(alpha: 0.2),
                       width: 1,
                     ),
                   ),
@@ -240,7 +247,7 @@ class QrpageView extends GetView<QrpageController> {
                     children: [
                       Icon(
                         Icons.info_outline_rounded,
-                        color: Colors.blue.shade700,
+                        color: AppTheme.infoColor,
                         size: ResponsiveUtils.fontSize(20),
                       ),
                       SizedBox(width: ResponsiveUtils.wp(3)),
@@ -250,7 +257,7 @@ class QrpageView extends GetView<QrpageController> {
                           style: TextStyle(
                             fontSize: ResponsiveUtils.fontSize(13),
                             fontWeight: FontWeight.w500,
-                            color: Colors.blue.shade900,
+                            color: AppTheme.infoColor,
                             height: 1.4,
                           ),
                         ),

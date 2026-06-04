@@ -20,7 +20,7 @@ class IntroductionView extends GetView<IntroductionController> {
     // Définition des styles de texte responsifs
     final titleStyle = TextStyle(
       fontSize: ResponsiveUtils.fontSize(24),
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700,
       color: AppTheme.textPrimaryColor,
       height: 1.3,
     );
@@ -67,15 +67,9 @@ class IntroductionView extends GetView<IntroductionController> {
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(6)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppTheme.primaryColor.withValues(alpha: 0.2),
-                      blurRadius: 20,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppTheme.radiusXl),
+                  border: Border.all(color: AppTheme.borderColor, width: 1),
+                  boxShadow: AppTheme.cardShadow,
                 ),
                 padding: EdgeInsets.all(ResponsiveUtils.wp(5)),
                 child: Image.asset(
@@ -131,15 +125,9 @@ class IntroductionView extends GetView<IntroductionController> {
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(ResponsiveUtils.wp(6)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppTheme.secondaryColor.withValues(alpha: 0.2),
-                      blurRadius: 20,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppTheme.radiusXl),
+                  border: Border.all(color: AppTheme.borderColor, width: 1),
+                  boxShadow: AppTheme.cardShadow,
                 ),
                 padding: EdgeInsets.all(ResponsiveUtils.wp(5)),
                 child: ClipRRect(
@@ -185,14 +173,9 @@ class IntroductionView extends GetView<IntroductionController> {
         image: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(5)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
-              ),
-            ],
+            borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+            border: Border.all(color: AppTheme.borderColor, width: 1),
+            boxShadow: AppTheme.cardShadow,
           ),
           padding: EdgeInsets.all(ResponsiveUtils.wp(4)),
           margin: EdgeInsets.only(top: ResponsiveUtils.hp(3)),
@@ -236,14 +219,9 @@ class IntroductionView extends GetView<IntroductionController> {
         image: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(5)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
-              ),
-            ],
+            borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+            border: Border.all(color: AppTheme.borderColor, width: 1),
+            boxShadow: AppTheme.cardShadow,
           ),
           padding: EdgeInsets.all(ResponsiveUtils.wp(4)),
           margin: EdgeInsets.only(top: ResponsiveUtils.hp(3)),
@@ -287,14 +265,9 @@ class IntroductionView extends GetView<IntroductionController> {
         image: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(5)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
-              ),
-            ],
+            borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+            border: Border.all(color: AppTheme.borderColor, width: 1),
+            boxShadow: AppTheme.cardShadow,
           ),
           padding: EdgeInsets.all(ResponsiveUtils.wp(4)),
           margin: EdgeInsets.only(top: ResponsiveUtils.hp(3)),
@@ -338,8 +311,9 @@ class IntroductionView extends GetView<IntroductionController> {
               vertical: ResponsiveUtils.hp(1),
             ),
             decoration: BoxDecoration(
-              color: Colors.grey.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(ResponsiveUtils.wp(5)),
+              color: AppTheme.textSecondaryColor.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+              border: Border.all(color: AppTheme.borderColor),
             ),
             child: Text(
               "Passer",
@@ -356,22 +330,17 @@ class IntroductionView extends GetView<IntroductionController> {
               vertical: ResponsiveUtils.hp(1.2),
             ),
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor,
-              borderRadius: BorderRadius.circular(ResponsiveUtils.wp(5)),
-              boxShadow: [
-                BoxShadow(
-                  color: AppTheme.primaryColor.withValues(alpha: 0.4),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+              gradient: AppTheme.primaryGradient,
+              borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+              boxShadow: AppTheme.buttonShadow,
             ),
             child: Text(
               "Commencer",
               style: TextStyle(
                 fontSize: ResponsiveUtils.fontSize(14),
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.3,
               ),
             ),
           ),
@@ -381,8 +350,9 @@ class IntroductionView extends GetView<IntroductionController> {
               vertical: ResponsiveUtils.hp(0.8),
             ),
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor,
-              borderRadius: BorderRadius.circular(ResponsiveUtils.wp(4)),
+              gradient: AppTheme.primaryGradient,
+              borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+              boxShadow: AppTheme.buttonShadow,
             ),
             child: Icon(
               Icons.arrow_forward_rounded,

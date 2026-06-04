@@ -13,16 +13,16 @@ class MenuScreenView extends GetView<DrawerPageController> {
   Widget build(BuildContext context) {
     // Initialisation des utilitaires responsifs
     ResponsiveUtils.init(context);
-    
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
               AppTheme.primaryColor,
-              AppTheme.primaryColor.withValues(alpha: 0.85),
+              AppTheme.primaryDark,
             ],
           ),
         ),
@@ -30,7 +30,7 @@ class MenuScreenView extends GetView<DrawerPageController> {
           child: Column(
             children: [
               SizedBox(height: ResponsiveUtils.hp(3)),
-              
+
               // En-tête du profil
               Container(
                 margin: EdgeInsets.symmetric(
@@ -39,14 +39,6 @@ class MenuScreenView extends GetView<DrawerPageController> {
                 ),
                 child: Row(
                   children: [
-                    Text(
-                      "E-Campus",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: ResponsiveUtils.fontSize(22),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     const Spacer(),
                     IconButton(
                       icon: Icon(
@@ -59,9 +51,9 @@ class MenuScreenView extends GetView<DrawerPageController> {
                   ],
                 ),
               ),
-              
+
               SizedBox(height: ResponsiveUtils.hp(2)),
-              
+
               // Photo de profil avec effet d'ombre
               Container(
                 decoration: BoxDecoration(
@@ -89,9 +81,9 @@ class MenuScreenView extends GetView<DrawerPageController> {
                   ),
                 ),
               ),
-              
+
               SizedBox(height: ResponsiveUtils.hp(2)),
-              
+
               // Informations utilisateur
               Container(
                 width: double.infinity,
@@ -128,13 +120,14 @@ class MenuScreenView extends GetView<DrawerPageController> {
                   ],
                 ),
               ),
-              
+
               SizedBox(height: ResponsiveUtils.hp(4)),
-              
+
               // Menu items
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: ResponsiveUtils.wp(4)),
+                  margin:
+                      EdgeInsets.symmetric(horizontal: ResponsiveUtils.wp(4)),
                   child: Column(
                     children: [
                       _buildMenuItem(
@@ -159,7 +152,7 @@ class MenuScreenView extends GetView<DrawerPageController> {
                   ),
                 ),
               ),
-              
+
               // Version de l'application
               Container(
                 margin: EdgeInsets.only(bottom: ResponsiveUtils.hp(3)),
@@ -177,7 +170,7 @@ class MenuScreenView extends GetView<DrawerPageController> {
       ),
     );
   }
-  
+
   // Widget pour un élément de menu
   Widget _buildMenuItem({
     required IconData icon,
@@ -224,7 +217,9 @@ class MenuScreenView extends GetView<DrawerPageController> {
                 ),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: isLogout ? Colors.red.shade300 : Colors.white.withValues(alpha: 0.7),
+                  color: isLogout
+                      ? Colors.red.shade300
+                      : Colors.white.withValues(alpha: 0.7),
                   size: ResponsiveUtils.wp(4),
                 ),
               ],
@@ -234,7 +229,7 @@ class MenuScreenView extends GetView<DrawerPageController> {
       ),
     );
   }
-  
+
   // Dialogue de confirmation pour la déconnexion
   void _showLogoutConfirmation() {
     Get.dialog(

@@ -12,12 +12,21 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     // Initialisation des utilitaires responsifs
     ResponsiveUtils.init(context);
-    
+
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: AppTheme.primaryColor,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppTheme.primaryColor,
+              AppTheme.primaryDark,
+            ],
+          ),
+        ),
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -50,14 +59,14 @@ class SplashView extends GetView<SplashController> {
                       padding: EdgeInsets.all(ResponsiveUtils.wp(4)),
                       child: ClipOval(
                         child: Image.asset(
-                          'assets/logo2.jpeg',
+                          'logo_noir.png',
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    
+
                     SizedBox(height: ResponsiveUtils.hp(3)),
-                    
+
                     // Titre de l'application
                     Text(
                       "E-CAMPUS",
@@ -69,9 +78,9 @@ class SplashView extends GetView<SplashController> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    
+
                     SizedBox(height: ResponsiveUtils.hp(1)),
-                    
+
                     // Sous-titre
                     Text(
                       "Votre campus digital",
@@ -82,18 +91,18 @@ class SplashView extends GetView<SplashController> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    
+
                     SizedBox(height: ResponsiveUtils.hp(5)),
-                    
+
                     // Animation de chargement
                     SpinKitRing(
                       color: Colors.white,
                       size: ResponsiveUtils.wp(12),
                       lineWidth: 4,
                     ),
-                    
+
                     SizedBox(height: ResponsiveUtils.hp(3)),
-                    
+
                     // Message de chargement
                     Text(
                       "Chargement en cours...",

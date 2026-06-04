@@ -31,33 +31,89 @@ void main() async {
       title: "E-CAMPUS",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         primaryColor: AppTheme.primaryColor,
         colorScheme: const ColorScheme.light(
           primary: AppTheme.primaryColor,
           secondary: AppTheme.secondaryColor,
           tertiary: AppTheme.accentColor,
           surface: AppTheme.cardColor,
+          error: AppTheme.errorColor,
         ),
         scaffoldBackgroundColor: AppTheme.backgroundColor,
         cardColor: AppTheme.cardColor,
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: AppTheme.primaryColor,
           elevation: 0,
-          iconTheme: IconThemeData(color: AppTheme.textLightColor),
-          titleTextStyle: TextStyle(
-              color: AppTheme.textLightColor,
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+          scrolledUnderElevation: 0,
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: AppTheme.textLightColor),
+          titleTextStyle: GoogleFonts.poppins(
+            color: AppTheme.textLightColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            letterSpacing: -0.2,
+          ),
         ),
         textTheme: GoogleFonts.poppinsTextTheme(),
+        cardTheme: CardThemeData(
+          color: AppTheme.cardColor,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: AppTheme.surfaceColor,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+            borderSide: const BorderSide(color: AppTheme.borderColor),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+            borderSide: const BorderSide(color: AppTheme.borderColor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+            borderSide:
+                const BorderSide(color: AppTheme.primaryColor, width: 1.6),
+          ),
+          prefixIconColor: AppTheme.primaryColor,
+          labelStyle: const TextStyle(color: AppTheme.textSecondaryColor),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppTheme.secondaryColor,
+            backgroundColor: AppTheme.primaryColor,
             foregroundColor: AppTheme.textLightColor,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            elevation: 2,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+            ),
+            elevation: 0,
+            textStyle: GoogleFonts.poppins(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.3,
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: AppTheme.primaryColor,
+            side: const BorderSide(color: AppTheme.primaryColor, width: 1.5),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+            ),
+            textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+          ),
+        ),
+        snackBarTheme: SnackBarThemeData(
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radiusSm),
           ),
         ),
       ),

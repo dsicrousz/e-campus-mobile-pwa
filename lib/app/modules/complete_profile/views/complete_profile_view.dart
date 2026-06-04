@@ -17,13 +17,22 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
       backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppTheme.primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppTheme.primaryColor, AppTheme.primaryDark],
+            ),
+          ),
+        ),
         elevation: 0,
         title: Obx(() => Text(
               _getStepTitle(controller.currentStep.value),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: ResponsiveUtils.fontSize(18),
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
               ),
             )),
         centerTitle: true,
@@ -134,14 +143,9 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
           padding: EdgeInsets.all(ResponsiveUtils.wp(4)),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
+            borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+            border: Border.all(color: AppTheme.borderColor, width: 1),
+            boxShadow: AppTheme.cardShadow,
           ),
           child: Column(
             children: [
@@ -218,8 +222,9 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
               backgroundColor: AppTheme.primaryColor,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
+                borderRadius: BorderRadius.circular(AppTheme.radiusMd),
               ),
+              elevation: 0,
             ),
             child: controller.isLoading.value
                 ? SpinKitThreeBounce(
@@ -230,7 +235,8 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
                     isLastStep ? 'Terminer' : 'Continuer',
                     style: TextStyle(
                       fontSize: ResponsiveUtils.fontSize(16),
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.3,
                     ),
                   ),
           ),
@@ -271,15 +277,10 @@ class CompleteProfileView extends GetView<CompleteProfileController> {
         SizedBox(height: ResponsiveUtils.hp(0.8)),
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(ResponsiveUtils.wp(3)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
+            color: AppTheme.surfaceColor,
+            borderRadius: BorderRadius.circular(AppTheme.radiusMd),
+            border: Border.all(color: AppTheme.borderColor, width: 1),
+            boxShadow: AppTheme.softShadow,
           ),
           child: TextField(
             onChanged: onChanged,
